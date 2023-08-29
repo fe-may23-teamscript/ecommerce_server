@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log('Hello World!');
+console.log("Hello World!")
 
 const app = createServer();
 const port = process.env.PORT || 3000;
