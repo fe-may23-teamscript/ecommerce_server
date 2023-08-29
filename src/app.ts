@@ -1,3 +1,13 @@
-'use strict';
+import { createServer } from './createServer';
+import dotenv from 'dotenv';
 
-console.log('Hello World!');
+dotenv.config();
+
+const app = createServer();
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  createServer();
+  // eslint-disable-next-line no-console
+  console.log(`Server is running on http://localhost:${port}`);
+});

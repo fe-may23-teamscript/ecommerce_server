@@ -7,3 +7,7 @@ node_modules
 
 # MacOS
 .DS_Store
+node_modules
+
+#TS Compiled
+dist
