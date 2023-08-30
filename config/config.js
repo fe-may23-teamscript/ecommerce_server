@@ -11,7 +11,7 @@ const settings = {
       require: true,
       rejectUnauthorized: false,
     },
-  }
+  },
 };
 
 module.exports = {
