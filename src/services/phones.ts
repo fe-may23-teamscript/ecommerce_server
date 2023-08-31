@@ -8,8 +8,9 @@ const getAll = async ({
 }: {
   offset: number;
   limit: number;
-  order: [string, 'DESC' | 'ASC'][];
+  order: [string, 'DESC' | 'ASC'][] | undefined;
 }) => {
+  console.log('order', order);
   const phones = await Phone.findAndCountAll({
     limit,
     offset,
