@@ -17,5 +17,5 @@ export class Namespace extends Model<INamespace> {
   @Column({
     type: DataType.STRING,
   })
-    id: string;
+  id: string;
 }

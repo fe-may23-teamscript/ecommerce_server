@@ -21,63 +21,63 @@ export class PhoneModel extends Model<IPhoneModel> {
   @Column({
     type: DataType.STRING,
   })
-    id: string;
+  id: string;
 
   @ForeignKey(() => Namespace)
   @Column({
     field: 'namespace_id',
   })
-    namespaceId: string;
+  namespaceId: string;
 
   @Column
-    name: string;
+  name: string;
 
   @Column
-    capacity: string;
+  capacity: string;
 
   @Column({
     field: 'price_regular',
   })
-    priceRegular: number;
+  priceRegular: number;
 
   @Column({
     field: 'price_discount',
   })
-    priceDiscount: number;
+  priceDiscount: number;
 
   @Column({
     type: DataType.ARRAY(DataType.STRING),
     field: 'colors_available',
   })
-    colorsAvailable: string[];
+  colorsAvailable: string[];
 
   @Column
-    color: string;
+  color: string;
 
   @Column(DataType.ARRAY(DataType.STRING))
-    images: string[];
+  images: string[];
 
   @HasMany(() => Description)
-    description: Description[];
+  description: Description[];
 
   @Column
-    screen: string;
+  screen: string;
 
   @Column
-    resolution: string;
+  resolution: string;
 
   @Column
-    processor: string;
+  processor: string;
 
   @Column
-    ram: string;
+  ram: string;
 
   @Column
-    camera: string;
+  camera: string;
 
   @Column
-    zoom: string;
+  zoom: string;
 
   @Column
-    cell: string;
+  cell: string;
 }

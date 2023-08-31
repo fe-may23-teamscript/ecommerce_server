@@ -12,68 +12,68 @@ export class Phone extends Model<IPhone> {
     field: 'id',
     primaryKey: true,
   })
-    id: string;
+  id: string;
 
   @Column({
     field: 'category',
   })
-    category: string;
+  category: string;
 
   @ForeignKey(() => PhoneModel)
   @Column({
     field: 'phone_id',
   })
-    phoneId: string;
+  phoneId: string;
 
   @Column({
     field: 'item_id',
   })
-    itemId: string;
+  itemId: string;
 
   @Column({
     field: 'name',
   })
-    name: string;
+  name: string;
 
   @Column({
     field: 'full_price',
   })
-    fullPrice: number;
+  fullPrice: number;
 
   @Column({
     field: 'price',
   })
-    price: number;
+  price: number;
 
   @Column({
     field: 'screen',
   })
-    screen: string;
+  screen: string;
 
   @Column({
     field: 'capacity',
   })
-    capacity: string;
+  capacity: string;
 
   @Column({
     field: 'color',
   })
-    color: string;
+  color: string;
 
   @Column({
     field: 'ram',
   })
-    ram: string;
+  ram: string;
 
   @Column({
     field: 'year',
   })
-    year: number;
+  year: number;
 
   @Column({
     field: 'image',
   })
-    image: string;
+  image: string;
 
   // @Column(DataType.VIRTUAL(DataType.NUMBER, ['fullPrice', 'price']))
   // get discount(): number {

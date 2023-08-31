@@ -1,7 +1,6 @@
 'use strict';
 
 import { Sequelize } from 'sequelize-typescript';
-// import { Product, Phone, Description } from '../models';
 import dotenv from 'dotenv';
 import { Phone } from './tables/Phone';
 import { PhoneModel } from './tables/PhoneModel';

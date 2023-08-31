@@ -16,17 +16,17 @@ import { PhoneModel } from './PhoneModel';
 })
 export class Description extends Model<IDescription> {
   @Column
-    title: string;
+  title: string;
 
   @Column(DataType.ARRAY(DataType.TEXT))
-    text: string[];
+  text: string[];
 
   @ForeignKey(() => PhoneModel)
   @Column({
     field: 'phone_id',
   })
-    phoneId: string;
+  phoneId: string;
 
   @BelongsTo(() => PhoneModel)
-    phone: PhoneModel;
+  phone: PhoneModel;
 }
