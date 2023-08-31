@@ -1,5 +1,11 @@
-import { Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
-import { INamespace } from '../../models/INamespace';
+import {
+  Column,
+  DataType,
+  Model,
+  PrimaryKey,
+  Table,
+} from 'sequelize-typescript';
+import { INamespace } from '../../types/INamespace';
 
 @Table({
   tableName: 'namespaces',
@@ -11,5 +17,5 @@ export class Namespace extends Model<INamespace> {
   @Column({
     type: DataType.STRING,
   })
-  id: string;
+    id: string;
 }

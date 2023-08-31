@@ -1,3 +1,3 @@
 export interface INamespace {
-  id: string
+  id: string;
 }

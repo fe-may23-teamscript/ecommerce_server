@@ -23,6 +23,6 @@ export async function connect() {
   try {
     await sequelize.authenticate();
   } catch (error) {
-    throw new Error('Cant connect')
+    throw new Error('Cant connect');
   }
 }
