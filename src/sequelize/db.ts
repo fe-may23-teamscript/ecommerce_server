@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import { Phone } from '../models/Phones';
+import { Phone } from '../models/Phone';
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 const URI = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;

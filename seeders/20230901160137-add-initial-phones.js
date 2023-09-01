@@ -5,10 +5,10 @@
 const fs = require('fs');
 const path = require('path');
 
-// You should NEVER modify this parsing function or source JSON file!
-async function parseInitialPhones() {
+// You should NEVER modify this parsing function or source JSON files!
+async function parsePreparedPhones() {
   const phonesJSON = fs.readFileSync(
-    path.resolve(__dirname, '../public/api/phones.json'),
+    path.resolve(__dirname, '../public/api/preparedPhones.json'),
     {
       encoding: 'utf8',
     },
@@ -20,16 +20,16 @@ async function parseInitialPhones() {
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const phones = await parseInitialPhones();
+    const phones = await parsePreparedPhones();
 
     await queryInterface.bulkInsert('phones', phones);
   },
 
   async down(queryInterface, Sequelize) {
-    const phones = await parseInitialPhones();
+    const phones = await parsePreparedPhones();
 
     await queryInterface.bulkDelete('phones', {
-      id: phones.map((phone) => phone.id),
+      slug: phones.map((phone) => phone.slug),
     });
   },
 };
