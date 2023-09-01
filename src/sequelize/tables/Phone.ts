@@ -1,4 +1,4 @@
-import { Column, ForeignKey, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { IPhone } from '../../types/IPhone';
 import { PhoneModel } from './PhoneModel';
 
@@ -24,6 +24,9 @@ export class Phone extends Model<IPhone> {
     field: 'phone_id',
   })
   phoneId: string;
+
+  @BelongsTo(() => PhoneModel, { onDelete: 'cascade' })
+  public model: PhoneModel;
 
   @Column({
     field: 'item_id',
