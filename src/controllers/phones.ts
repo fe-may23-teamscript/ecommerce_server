@@ -31,4 +31,16 @@ const getLastYearPhones: ControllerAction = async (req, res) => {
   res.send(phones);
 };
 
-export const phonesController = { getAll, getTenWithDisc, getLastYearPhones };
+const getOnePhone: ControllerAction = async (req, res) => {
+  const phoneId = req.params.id;
+  const phone = await phonesServices.getPhoneById(phoneId);
+
+  res.send(phone);
+};
+
+export const phonesController = {
+  getAll,
+  getTenWithDisc,
+  getLastYearPhones,
+  getOnePhone,
+};

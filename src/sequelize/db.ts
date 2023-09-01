@@ -11,7 +11,7 @@ dotenv.config();
 const { URI } = process.env;
 
 export const sequelize = new Sequelize(URI as string, {
-  models: [Phone, PhoneModel, Description, Namespace],
+  models: [PhoneModel, Phone, Description, Namespace],
   dialectOptions: {
     ssl: true,
     rejectUnauthorized: true,

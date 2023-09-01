@@ -1,5 +1,6 @@
 import { sequelize } from '../sequelize/db';
 import { Phone } from '../sequelize/tables/Phone';
+import { PhoneModel } from '../sequelize/tables/PhoneModel';
 
 const getAll = async ({
   offset,
@@ -35,4 +36,17 @@ const getLastYearPhones = async () => {
   return results;
 };
 
-export const phonesServices = { getAll, getTenWithDisc, getLastYearPhones };
+const getPhoneById = async (phoneId: string) => {
+  const phone = await Phone.findByPk(phoneId, {
+    include: PhoneModel,
+  });
+
+  return phone?.model;
+};
+
+export const phonesServices = {
+  getAll,
+  getTenWithDisc,
+  getLastYearPhones,
+  getPhoneById,
+};
