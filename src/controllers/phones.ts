@@ -38,4 +38,9 @@ const getOnePhone: ControllerAction = async (req, res) => {
   res.send(phone);
 };
 
-export const phonesController = { getAll, getTenWithDisc, getLastYearPhones, getOnePhone };
+export const phonesController = {
+  getAll,
+  getTenWithDisc,
+  getLastYearPhones,
+  getOnePhone,
+};

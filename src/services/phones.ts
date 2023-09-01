@@ -44,4 +44,9 @@ const getPhoneById = async (phoneId: string) => {
   return phone?.model;
 };
 
-export const phonesServices = { getAll, getTenWithDisc, getLastYearPhones, getPhoneById };
+export const phonesServices = {
+  getAll,
+  getTenWithDisc,
+  getLastYearPhones,
+  getPhoneById,
+};
