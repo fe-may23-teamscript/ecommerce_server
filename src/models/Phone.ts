@@ -1,5 +1,5 @@
 import { Optional } from 'sequelize';
-import { Column, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { PhoneAttributes } from '../types/Phone';
 
 export interface PhoneCreationAttributes
@@ -19,7 +19,9 @@ export class Phone extends Model<PhoneAttributes, PhoneCreationAttributes> {
   @Column
   name: string;
 
-  @Column
+  @Column({
+    type: DataType.ARRAY(DataType.STRING),
+  })
   capacityAvailable: string[];
 
   @Column
@@ -31,16 +33,22 @@ export class Phone extends Model<PhoneAttributes, PhoneCreationAttributes> {
   @Column
   priceDiscount: number;
 
-  @Column
+  @Column({
+    type: DataType.ARRAY(DataType.STRING),
+  })
   colorsAvailable: string[];
 
   @Column
   color: string;
 
-  @Column
+  @Column({
+    type: DataType.ARRAY(DataType.STRING),
+  })
   images: string[];
 
-  @Column
+  @Column({
+    type: DataType.JSONB,
+  })
   description: string; // stringified JSON
 
   @Column
@@ -61,7 +69,9 @@ export class Phone extends Model<PhoneAttributes, PhoneCreationAttributes> {
   @Column
   zoom: string;
 
-  @Column
+  @Column({
+    type: DataType.ARRAY(DataType.STRING),
+  })
   cell: string[];
 
   @Column
