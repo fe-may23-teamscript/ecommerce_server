@@ -1,3 +1,5 @@
+'use strict';
+
 import { Sequelize } from 'sequelize-typescript';
 import { Phone } from '../models/Phone';
 
