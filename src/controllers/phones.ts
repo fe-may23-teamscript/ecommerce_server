@@ -1,5 +1,5 @@
 import { phonesServices } from '../services/phones';
-import { ControllerAction } from '../types/ControllerAction ';
+import { ControllerAction } from '../types/ControllerAction';
 
 const getAll: ControllerAction = async (req, res) => {
   const { offset = '0', limit = '10', order = '' } = req.query;
@@ -25,4 +25,10 @@ const getTenWithDisc: ControllerAction = async (req, res) => {
   res.send(phones);
 };
 
-export const phonesController = { getAll, getTenWithDisc };
+const getLastYearPhones: ControllerAction = async (req, res) => {
+  const phones = await phonesServices.getLastYearPhones();
+
+  res.send(phones);
+};
+
+export const phonesController = { getAll, getTenWithDisc, getLastYearPhones };

@@ -10,7 +10,6 @@ const getAll = async ({
   limit: number;
   order: [string, 'DESC' | 'ASC'][] | undefined;
 }) => {
-  console.log('order', order);
   const phones = await Phone.findAndCountAll({
     limit,
     offset,
@@ -28,4 +27,12 @@ const getTenWithDisc = async () => {
   return results;
 };
 
-export const phonesServices = { getAll, getTenWithDisc };
+const getLastYearPhones = async () => {
+  const [results] = await sequelize.query(
+    'SELECT * from phones WHERE YEAR = 2019',
+  );
+
+  return results;
+};
+
+export const phonesServices = { getAll, getTenWithDisc, getLastYearPhones };
