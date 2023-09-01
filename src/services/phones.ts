@@ -28,4 +28,12 @@ const getTenWithDisc = async () => {
   return results;
 };
 
-export const phonesServices = { getAll, getTenWithDisc };
+const getLastYearPhones = async () => {
+  const [results] = await sequelize.query(
+    'SELECT * from phones WHERE YEAR = 2019',
+  );
+
+  return results;
+};
+
+export const phonesServices = { getAll, getTenWithDisc, getLastYearPhones };

@@ -74,9 +74,4 @@ export class Phone extends Model<IPhone> {
     field: 'image',
   })
   image: string;
-
-  // @Column(DataType.VIRTUAL(DataType.NUMBER, ['fullPrice', 'price']))
-  // get discount(): number {
-  //   return this.fullPrice - this.price;
-  // }
 }
