@@ -32,7 +32,7 @@ const getLastYearPhones: ControllerAction = async (req, res) => {
 };
 
 const getOnePhone: ControllerAction = async (req, res) => {
-  const phoneId = +req.params.id;
+  const phoneId = +req.params.id || req.params.id;
   const phone = await phonesServices.getPhoneById(phoneId);
 
   res.send(phone);
