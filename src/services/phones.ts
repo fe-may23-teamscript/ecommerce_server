@@ -35,8 +35,18 @@ const getLastYearPhones = async () => {
   return results;
 };
 
-const getPhoneById = async (phoneId: number) => {
-  const phone = await Phone.findByPk(phoneId);
+const getPhoneById = async (phoneId: number | string) => {
+  if (typeof phoneId === 'number') {
+    const phone = await Phone.findByPk(phoneId);
+
+    return phone;
+  }
+
+  const phone = await Phone.findOne({
+    where: {
+      slug: phoneId,
+    },
+  });
 
   return phone;
 };
