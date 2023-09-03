@@ -1,6 +1,5 @@
+import { Phone } from '../models/Phone';
 import { sequelize } from '../sequelize/db';
-import { Phone } from '../sequelize/tables/Phone';
-import { PhoneModel } from '../sequelize/tables/PhoneModel';
 
 const getAll = async ({
   offset,
@@ -22,7 +21,7 @@ const getAll = async ({
 
 const getTenWithDisc = async () => {
   const [results] = await sequelize.query(
-    'SELECT *, (full_price - price) as discount from phones ORDER BY discount DESC limit 10',
+    'SELECT *, ("priceRegular" - "priceDiscount") as discount from phones ORDER BY discount DESC limit 10',
   );
 
   return results;
@@ -36,12 +35,10 @@ const getLastYearPhones = async () => {
   return results;
 };
 
-const getPhoneById = async (phoneId: string) => {
-  const phone = await Phone.findByPk(phoneId, {
-    include: PhoneModel,
-  });
+const getPhoneById = async (phoneId: number) => {
+  const phone = await Phone.findByPk(phoneId);
 
-  return phone?.model;
+  return phone;
 };
 
 export const phonesServices = {
