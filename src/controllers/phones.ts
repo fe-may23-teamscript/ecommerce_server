@@ -81,5 +81,5 @@ export const phonesController = {
   getTwelveWithDisc,
   getLastYearPhones,
   getOnePhone,
-  getRecommendedDevices
+  getRecommendedDevices,
 };

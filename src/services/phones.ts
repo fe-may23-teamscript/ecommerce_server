@@ -59,23 +59,18 @@ const getRecommended = async (deviceId: number | string) => {
 
   const devicesLowerPrice = await Phone.findAll({
     limit: 12,
-    order: [
-      ['priceDiscount', 'DESC']
-    ],
+    order: [['priceDiscount', 'DESC']],
     where: {
       priceDiscount: { [Op.lte]: priceDiscount },
-
-    }
+    },
   });
 
   const devicesHigherPrice = await Phone.findAll({
     limit: 12,
-    order: [
-      ['priceDiscount', 'ASC']
-    ],
+    order: [['priceDiscount', 'ASC']],
     where: {
       priceDiscount: { [Op.gt]: priceDiscount },
-    }
+    },
   });
 
   const devices = [];
@@ -92,7 +87,9 @@ const getRecommended = async (deviceId: number | string) => {
     if (devices.length === 12) break;
   }
 
-  return devices.sort((device1, device2) => device1.priceDiscount - device2.priceDiscount);
+  return devices.sort(
+    (device1, device2) => device1.priceDiscount - device2.priceDiscount,
+  );
 };
 
 export const phonesServices = {
@@ -100,5 +97,5 @@ export const phonesServices = {
   getTwelveWithDisc,
   getLastYearPhones,
   getPhoneById,
-  getRecommended
+  getRecommended,
 };
