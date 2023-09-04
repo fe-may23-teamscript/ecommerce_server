@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import { Phone } from '../models/Phone';
 import { sequelize } from '../sequelize/db';
 
@@ -51,9 +52,53 @@ const getPhoneById = async (phoneId: number | string) => {
   return phone;
 };
 
+const getRecommended = async (deviceId: number | string) => {
+  const device = await getPhoneById(deviceId);
+
+  const priceDiscount = device?.priceDiscount || 0;
+
+  const devicesLowerPrice = await Phone.findAll({
+    limit: 12,
+    order: [
+      ['priceDiscount', 'DESC']
+    ],
+    where: {
+      priceDiscount: { [Op.lte]: priceDiscount },
+
+    }
+  });
+
+  const devicesHigherPrice = await Phone.findAll({
+    limit: 12,
+    order: [
+      ['priceDiscount', 'ASC']
+    ],
+    where: {
+      priceDiscount: { [Op.gt]: priceDiscount },
+    }
+  });
+
+  const devices = [];
+
+  for (let i = 0; i <= 12; i++) {
+    if (devicesLowerPrice[i]) {
+      devices.push(devicesLowerPrice[i]);
+    }
+
+    if (devicesHigherPrice[i]) {
+      devices.push(devicesHigherPrice[i]);
+    }
+
+    if (devices.length === 12) break;
+  }
+
+  return devices.sort((device1, device2) => device1.priceDiscount - device2.priceDiscount);
+};
+
 export const phonesServices = {
   getAll,
   getTwelveWithDisc,
   getLastYearPhones,
   getPhoneById,
+  getRecommended
 };

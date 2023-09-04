@@ -7,5 +7,6 @@ phonesRouter.get('/', phonesController.getAll);
 phonesRouter.get('/twelve-with-disc', phonesController.getTwelveWithDisc);
 phonesRouter.get('/last-year-phones', phonesController.getLastYearPhones);
 phonesRouter.get('/:id', phonesController.getOnePhone);
+phonesRouter.get('/:id/recommended', phonesController.getRecommendedDevices);
 
 export default phonesRouter;
