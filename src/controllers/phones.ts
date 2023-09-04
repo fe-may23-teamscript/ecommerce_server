@@ -2,7 +2,7 @@ import { phonesServices } from '../services/phones';
 import { ControllerAction } from '../types/ControllerAction';
 
 const getAll: ControllerAction = async (req, res) => {
-  const { offset = '0', limit = '10', order = '' } = req.query;
+  const { offset = '0', limit = '12', order = '' } = req.query;
 
   const orderByAll =
     order &&
@@ -19,8 +19,8 @@ const getAll: ControllerAction = async (req, res) => {
   res.send(phones);
 };
 
-const getTenWithDisc: ControllerAction = async (req, res) => {
-  const phones = await phonesServices.getTenWithDisc();
+const getTwelveWithDisc: ControllerAction = async (req, res) => {
+  const phones = await phonesServices.getTwelveWithDisc();
 
   res.send(phones);
 };
@@ -46,7 +46,7 @@ const getOnePhone: ControllerAction = async (req, res) => {
 
 export const phonesController = {
   getAll,
-  getTenWithDisc,
+  getTwelveWithDisc,
   getLastYearPhones,
   getOnePhone,
 };
