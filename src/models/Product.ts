@@ -14,7 +14,16 @@ export class Product extends Model<
   ProductAttributes,
   ProductCreationAttributes
 > {
-  @Column
+  @Column({
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+  })
+  id: number;
+
+  @Column({
+    allowNull: false,
+  })
   slug: string;
 
   @Column

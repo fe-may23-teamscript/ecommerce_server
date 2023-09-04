@@ -22,17 +22,35 @@ const getAll: ControllerAction = async (req, res) => {
     productType: productType as string,
   });
 
+  if (products.rows.length === 0) {
+    res.sendStatus(404);
+
+    return;
+  }
+
   res.send(products);
 };
 
 const getDiscounted: ControllerAction = async (req, res) => {
   const products = await productServices.getDiscounted();
 
+  if (products.length === 0) {
+    res.sendStatus(404);
+
+    return;
+  }
+
   res.send(products);
 };
 
 const getNew: ControllerAction = async (req, res) => {
   const products = await productServices.getNew();
+
+  if (products.length === 0) {
+    res.sendStatus(404);
+
+    return;
+  }
 
   res.send(products);
 };
@@ -41,7 +59,7 @@ const getProductById: ControllerAction = async (req, res) => {
   const productId = +req.params.id || req.params.id;
   const product = await productServices.getProductById(productId);
 
-  if (product === null) {
+  if (!product) {
     res.sendStatus(404);
 
     return;
@@ -50,9 +68,23 @@ const getProductById: ControllerAction = async (req, res) => {
   res.send(product);
 };
 
+const getRecommended: ControllerAction = async (req, res) => {
+  const productId = +req.params.id || req.params.id;
+  const products = await productServices.getRecommended(productId);
+
+  if (products.length === 0) {
+    res.sendStatus(404);
+
+    return;
+  }
+
+  res.send(products);
+};
+
 export const productController = {
   getAll,
   getDiscounted,
   getNew,
   getProductById,
+  getRecommended,
 };
