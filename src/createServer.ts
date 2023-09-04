@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import phonesRouter from './routes/phones';
+import productRouter from './routes/product';
 
 export const createServer = () => {
   const app = express();
@@ -9,7 +9,7 @@ export const createServer = () => {
 
   app.use('/img', express.static('public/img'));
 
-  app.use('/phones', phonesRouter);
+  app.use('/products', productRouter);
 
   return app;
 };

@@ -1,15 +1,19 @@
 import { Optional } from 'sequelize';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { PhoneAttributes } from '../types/Phone';
+import { ProductAttributes } from '../types/Product';
 
-export interface PhoneCreationAttributes
-  extends Optional<PhoneAttributes, 'id'> {}
+export interface ProductCreationAttributes
+  extends Optional<ProductAttributes, 'id'> {}
 
 @Table({
-  tableName: 'phones',
-  modelName: 'Phone',
+  tableName: 'products',
+  modelName: 'Product',
+  underscored: true,
 })
-export class Phone extends Model<PhoneAttributes, PhoneCreationAttributes> {
+export class Product extends Model<
+  ProductAttributes,
+  ProductCreationAttributes
+> {
   @Column
   slug: string;
 
