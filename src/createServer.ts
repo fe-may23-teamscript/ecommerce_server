@@ -7,6 +7,8 @@ export const createServer = () => {
 
   app.use(cors()).use(express.json());
 
+  app.use('/img', express.static('public/img'));
+
   app.use('/phones', phonesRouter);
 
   return app;

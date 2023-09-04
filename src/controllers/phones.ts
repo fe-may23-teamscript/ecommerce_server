@@ -35,6 +35,12 @@ const getOnePhone: ControllerAction = async (req, res) => {
   const phoneId = +req.params.id || req.params.id;
   const phone = await phonesServices.getPhoneById(phoneId);
 
+  if (phone === null) {
+    res.sendStatus(404);
+
+    return;
+  }
+
   res.send(phone);
 };
 
