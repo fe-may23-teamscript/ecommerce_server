@@ -1,4 +1,4 @@
-export interface PhoneAttributes {
+export interface ProductAttributes {
   id: number;
   slug: string;
   namespaceId: string;
