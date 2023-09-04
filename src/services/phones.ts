@@ -19,9 +19,9 @@ const getAll = async ({
   return phones;
 };
 
-const getTenWithDisc = async () => {
+const getTwelveWithDisc = async () => {
   const [results] = await sequelize.query(
-    'SELECT *, ("priceRegular" - "priceDiscount") as discount from phones ORDER BY discount DESC limit 10',
+    'SELECT *, ("priceRegular" - "priceDiscount") as discount from phones ORDER BY discount DESC limit 12',
   );
 
   return results;
@@ -53,7 +53,7 @@ const getPhoneById = async (phoneId: number | string) => {
 
 export const phonesServices = {
   getAll,
-  getTenWithDisc,
+  getTwelveWithDisc,
   getLastYearPhones,
   getPhoneById,
 };
