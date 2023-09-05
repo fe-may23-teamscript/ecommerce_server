@@ -1,7 +1,10 @@
+import createHttpError from 'http-errors';
 import { productServices } from '../services/product';
 import { ControllerAction } from '../types/ControllerAction';
 
-const getAll: ControllerAction = async (req, res) => {
+const { NotFound } = createHttpError;
+
+const getAll: ControllerAction = async (req, res, next) => {
   const {
     offset = '0',
     limit = '12',
@@ -15,46 +18,69 @@ const getAll: ControllerAction = async (req, res) => {
       .split(',')
       .map((i) => i.split(':') as [string, 'DESC' | 'ASC']);
 
-  const products = await productServices.getAll({
-    offset: +offset,
-    limit: +limit,
-    order: orderByAll || undefined,
-    productType: productType as string,
-  });
+  try {
+    const products = await productServices.getAll({
+      offset: +offset,
+      limit: +limit,
+      order: orderByAll || undefined,
+      productType: productType as string,
+    });
 
-  res.send(products);
-};
+    res.send(products);
 
-const getDiscounted: ControllerAction = async (req, res) => {
-  const products = await productServices.getDiscounted();
-
-  res.send(products);
-};
-
-const getNew: ControllerAction = async (req, res) => {
-  const products = await productServices.getNew();
-
-  res.send(products);
-};
-
-const getProductById: ControllerAction = async (req, res) => {
-  const productId = +req.params.id || req.params.id;
-  const product = await productServices.getProductById(productId);
-
-  if (!product) {
-    res.sendStatus(404);
-
-    return;
+  } catch (error) {
+    next(error);
   }
-
-  res.send(product);
 };
 
-const getRecommended: ControllerAction = async (req, res) => {
-  const productId = +req.params.id || req.params.id;
-  const products = await productServices.getRecommended(productId);
+const getDiscounted: ControllerAction = async (req, res, next) => {
+  try {
+    const products = await productServices.getDiscounted();
 
-  res.send(products);
+    res.send(products);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getNew: ControllerAction = async (req, res, next) => {
+  try {
+    const products = await productServices.getNew();
+
+    res.send(products);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getProductById: ControllerAction = async (req, res, next) => {
+  const productId = +req.params.id || req.params.id;
+
+  try {
+    const product = await productServices.getProductById(productId);
+
+    if (!product) {
+      next(new NotFound('Product not found'));
+
+      return;
+    }
+
+    res.send(product);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getRecommended: ControllerAction = async (req, res, next) => {
+  const productId = +req.params.id || req.params.id;
+
+  try {
+    const products = await productServices.getRecommended(productId);
+
+    res.send(products);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const productController = {
