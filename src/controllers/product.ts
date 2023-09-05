@@ -27,7 +27,6 @@ const getAll: ControllerAction = async (req, res, next) => {
     });
 
     res.send(products);
-
   } catch (error) {
     next(error);
   }

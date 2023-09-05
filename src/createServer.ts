@@ -16,11 +16,13 @@ export const createServer = () => {
     next(createHttpError(404));
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  app.use((err: HttpError, req: Request, res: Response, next: NextFunction): void => {
-    const { status = 500, message = 'Internal Server Error' } = err;
-    res.status(status).json({ message });
-  });
+  app.use(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    (err: HttpError, req: Request, res: Response, next: NextFunction): void => {
+      const { status = 500, message = 'Internal Server Error' } = err;
+      res.status(status).json({ message });
+    },
+  );
 
   return app;
 };
