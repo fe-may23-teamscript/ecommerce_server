@@ -3,17 +3,14 @@ import { Column, Model, Table } from 'sequelize-typescript';
 import { UserAttributes } from '../types/User';
 
 export interface UserCreationAttributes
-  extends Optional<UserAttributes, 'id'> { }
+  extends Optional<UserAttributes, 'id'> {}
 
 @Table({
   tableName: 'users',
   modelName: 'User',
   underscored: true,
 })
-export class User extends Model<
-  UserAttributes,
-  UserCreationAttributes
-> {
+export class User extends Model<UserAttributes, UserCreationAttributes> {
   @Column({
     allowNull: false,
     autoIncrement: true,
@@ -23,7 +20,7 @@ export class User extends Model<
 
   @Column({
     allowNull: false,
-    unique: true
+    unique: true,
   })
   username: string;
 

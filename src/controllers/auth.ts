@@ -39,7 +39,10 @@ const signIn: ControllerAction = async (req, res, next) => {
       return;
     }
 
-    const passwordIsValid = bcrypt.compareSync(req.body.password, checkUser.password);
+    const passwordIsValid = bcrypt.compareSync(
+      req.body.password,
+      checkUser.password,
+    );
 
     if (!passwordIsValid) {
       next(new Unauthorized('Username or password is incorrect'));
@@ -50,16 +53,16 @@ const signIn: ControllerAction = async (req, res, next) => {
     const token = jwt.sign({ id: checkUser.id }, `${secret}`, {
       algorithm: 'HS256',
       allowInsecureKeySizes: true,
-      expiresIn: 86400
+      expiresIn: 86400,
     });
 
     res.send({ token });
-
   } catch (error) {
     next(error);
   }
 };
 
 export const authController = {
-  signUp, signIn
+  signUp,
+  signIn,
 };
