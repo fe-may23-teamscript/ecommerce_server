@@ -1,3 +1,7 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-export type ControllerAction = (req: Request, res: Response) => void;
+export type ControllerAction = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => void;
