@@ -7,13 +7,24 @@ const getAll = async ({
   limit,
   order,
   productType,
+  searchQuery,
 }: {
   offset: number;
   limit: number;
   order: [string, 'DESC' | 'ASC'][] | undefined;
   productType: string;
+  searchQuery: string;
 }) => {
-  const whereCondition = productType ? { category: productType } : {};
+  const whereCondition: { name?: object; category?: string } = {};
+
+  if (searchQuery) {
+    whereCondition.name = {
+      [Op.iLike]: `%${searchQuery}%`,
+    };
+  }
+  if (productType) {
+    whereCondition.category = productType;
+  }
 
   const products = await Product.findAndCountAll({
     limit,
