@@ -50,7 +50,7 @@ GET [/products/apple-iphone-11-256gb-black/recommended](https://ecommerce-server
 
 ## Load Static Images
 
-Also, it's possible to get static images from the server.  
+Also, it's possible to get static images from the server.
 
 **Example**  
 GET [/img/tablets/apple-ipad-10/yellow/00.jpg](https://ecommerce-server-ee7i.onrender.com/img/tablets/apple-ipad-10/yellow/00.jpg)
