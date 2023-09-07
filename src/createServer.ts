@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import productRouter from './routes/product';
 import createHttpError, { HttpError } from 'http-errors';
-import authRouter from './routes/auth';
+import userRouter from './routes/user';
 
 export const createServer = () => {
   const app = express();
@@ -12,7 +12,8 @@ export const createServer = () => {
   app.use('/img', express.static('public/img'));
 
   app.use('/products', productRouter);
-  app.use('/users', authRouter);
+
+  app.use('/users', userRouter);
 
   app.use((req, res, next) => {
     next(createHttpError(404));

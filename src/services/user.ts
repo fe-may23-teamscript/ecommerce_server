@@ -22,7 +22,14 @@ const signIn = async (user: UserAttributes) => {
   return checkUser;
 };
 
-export const authServices = {
+const getUserById = async(userId: string) => {
+  const user = await User.findByPk(userId);
+
+  return user;
+};
+
+export const userService = {
   signUp,
   signIn,
+  getUserById
 };

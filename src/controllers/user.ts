@@ -1,5 +1,5 @@
 import { ControllerAction } from '../types/ControllerAction';
-import { authServices } from '../services/auth';
+import { userService } from '../services/user';
 import createHttpError from 'http-errors';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -15,7 +15,7 @@ const signUp: ControllerAction = async (req, res, next) => {
 
       return;
     }
-    const user = await authServices.signUp(req.body);
+    const user = await userService.signUp(req.body);
 
     res.send(user);
   } catch (error) {
@@ -31,7 +31,7 @@ const signIn: ControllerAction = async (req, res, next) => {
       return;
     }
 
-    const checkUser = await authServices.signIn(req.body);
+    const checkUser = await userService.signIn(req.body);
 
     if (!checkUser) {
       next(new NotFound('User not found'));
@@ -62,7 +62,18 @@ const signIn: ControllerAction = async (req, res, next) => {
   }
 };
 
-export const authController = {
+const profile: ControllerAction = async(req, res, next) => {
+  try {
+    const user = await userService.getUserById(req.params.userId);
+
+    res.send({username: user?.username, create: user?.createdAt, update: user?.updatedAt});
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const userController = {
   signUp,
   signIn,
+  profile
 };
