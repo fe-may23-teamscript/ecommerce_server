@@ -10,6 +10,7 @@ const getAll: ControllerAction = async (req, res, next) => {
     limit = '12',
     order = '',
     productType = '',
+    searchQuery = '',
   } = req.query;
 
   const orderByAll =
@@ -24,6 +25,7 @@ const getAll: ControllerAction = async (req, res, next) => {
       limit: +limit,
       order: orderByAll || undefined,
       productType: productType as string,
+      searchQuery: searchQuery as string,
     });
 
     res.send(products);
