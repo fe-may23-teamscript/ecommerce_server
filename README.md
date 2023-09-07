@@ -47,3 +47,10 @@ Requires either `id` or `slug` of the currently selected product.
 **Examples**  
 GET [/products/7/recommended](https://ecommerce-server-ee7i.onrender.com/products/7/recommended)  
 GET [/products/apple-iphone-11-256gb-black/recommended](https://ecommerce-server-ee7i.onrender.com/products/apple-iphone-11-256gb-black/recommended)
+
+## Load Static Images
+
+Also, it's possible to get static images from the server.
+
+**Example**  
+GET [/img/tablets/apple-ipad-10/yellow/00.jpg](https://ecommerce-server-ee7i.onrender.com/img/tablets/apple-ipad-10/yellow/00.jpg)
