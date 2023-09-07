@@ -22,7 +22,7 @@ const signIn = async (user: UserAttributes) => {
   return checkUser;
 };
 
-const getUserById = async(userId: string) => {
+const getUserById = async (userId: string) => {
   const user = await User.findByPk(userId);
 
   return user;
@@ -31,5 +31,5 @@ const getUserById = async(userId: string) => {
 export const userService = {
   signUp,
   signIn,
-  getUserById
+  getUserById,
 };

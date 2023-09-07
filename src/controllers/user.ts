@@ -62,11 +62,15 @@ const signIn: ControllerAction = async (req, res, next) => {
   }
 };
 
-const profile: ControllerAction = async(req, res, next) => {
+const profile: ControllerAction = async (req, res, next) => {
   try {
     const user = await userService.getUserById(req.params.userId);
 
-    res.send({username: user?.username, create: user?.createdAt, update: user?.updatedAt});
+    res.send({
+      username: user?.username,
+      create: user?.createdAt,
+      update: user?.updatedAt,
+    });
   } catch (error) {
     next(error);
   }
@@ -75,5 +79,5 @@ const profile: ControllerAction = async(req, res, next) => {
 export const userController = {
   signUp,
   signIn,
-  profile
+  profile,
 };

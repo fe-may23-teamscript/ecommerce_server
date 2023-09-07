@@ -25,7 +25,6 @@ export const authMiddleware: ControllerAction = (req, res, next) => {
     }
 
     req.params.userId = user.id.toString();
-
   } catch (error: unknown) {
     next(new Unauthorized((error as Error).message));
 
