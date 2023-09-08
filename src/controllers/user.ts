@@ -3,6 +3,7 @@ import { userService } from '../services/user';
 import createHttpError from 'http-errors';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import cache from '../middleware/cache';
 
 const { secret } = process.env;
 
@@ -56,6 +57,8 @@ const signIn: ControllerAction = async (req, res, next) => {
       expiresIn: 86400,
     });
 
+    cache.set(token, 'logout', 86400);
+
     res.send({ token });
   } catch (error) {
     next(error);
@@ -76,8 +79,22 @@ const profile: ControllerAction = async (req, res, next) => {
   }
 };
 
+const signOut: ControllerAction = async (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization || '';
+
+    const [, token] = authHeader.split(' ');
+    cache.del(token);
+
+    res.send({ msg: 'logout' });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const userController = {
   signUp,
   signIn,
   profile,
+  signOut,
 };
